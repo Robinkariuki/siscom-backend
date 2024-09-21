@@ -76,8 +76,10 @@ class TalentController extends Controller
         // Handle file upload
         if ($request->hasFile('resume')) {
             try {
+                // Store the file in the 'resumes' directory in the public disk
                 $path = $request->file('resume')->store('resumes', 'public');
-                $validatedData['resume'] = $path;
+                // Get the public URL of the file
+                $validatedData['resume'] = asset(Storage::url($path));
             } catch (\Exception $e) {
                 return response()->json([
                     'message' => 'Failed to upload resume',
