@@ -52,3 +52,28 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{talent}', [TalentController::class, 'destroy']); // Delete a talent
     });
 });
+
+
+
+
+// Health check / show available endpoints
+Route::get('/endpoints', function () {
+    return response()->json([
+        'endpoints' => [
+            'POST /api/engagements' => 'Create a new engagement',
+            'GET /api/engagements' => 'Get all engagements with pagination',
+            'GET /api/engagements/{id}' => 'Get a specific engagement',
+            'PUT /api/engagements/{id}' => 'Update an engagement',
+            'DELETE /api/engagements/{id}' => 'Delete an engagement',
+            'POST /api/talents' => 'Create a new talent',
+            'GET /api/talents' => 'Get all talents with pagination',
+            'GET /api/talents/{talent}' => 'Get a specific talent',
+            'PUT /api/talents/{talent}' => 'Update a talent',
+            'DELETE /api/talents/{talent}' => 'Delete a talent',
+            'POST /api/login' => 'User login',
+            'POST /api/register' => 'User registration',
+            'GET /api/user' => 'Get authenticated user information',
+            'POST /api/user/update' => 'Update authenticated user information'
+        ]
+    ]);
+});
